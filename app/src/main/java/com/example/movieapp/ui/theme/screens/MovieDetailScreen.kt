@@ -17,9 +17,10 @@ fun MovieDetailScreen(movieId: Int) {
             .padding(16.dp)
     ) {
         Text(text = movie.title)
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(118.dp))
         Text(text = movie.description)
         Spacer(modifier = Modifier.height(8.dp))
         Text(text = "Rating: ${movie.rating}")
     }
 }
+
