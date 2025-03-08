@@ -100,5 +100,7 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     // Optional - Integration with RxJava
     implementation(libs.androidx.runtime.rxjava2)
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.34.0")
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
 }
