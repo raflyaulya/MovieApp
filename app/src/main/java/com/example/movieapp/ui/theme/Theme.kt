@@ -1,58 +1,56 @@
 package com.example.movieapp.ui.theme
 
 import android.app.Activity
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
+// Theme.kt
+//import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+//import androidx.compose.ui.graphics.Color
 
-private val LightColorScheme = lightColorScheme(
+//private val DarkColorScheme = darkColorScheme(
+//    primary = Color.Red,
+//    background = Color.Black,
+//    surface = Color(0xFF121212),
+//    onBackground = Color.White,
+//    onSurface = Color.White
+//)
+
+
+// ... warna-warna lain yang sudah ada ...
+
+val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
-    tertiary = Pink40
+    tertiary = Pink40,
+    // ... warna-warna lain ...
+    surface = Color(0xFFF5F5F5), // Warna untuk container di mode terang
+    surfaceVariant = Color(0xFFEEEEEE), // Warna alternatif untuk container di mode terang
+    background = Color(0xFFFFFFFF) // Warna untuk background di mode terang
+)
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+val DarkColorScheme = darkColorScheme(
+    primary = Purple80,
+    secondary = PurpleGrey80,
+    tertiary = Pink80,
+    // ... warna-warna lain ...
+    surface = Color(0xFF303030), // Warna untuk container di mode gelap
+    surfaceVariant = Color(0xFF424242), // Warna alternatif untuk container di mode gelap
+    background = Color(0xFF121212) // Warna untuk background di mode gelap
 )
 
 @Composable
 fun MovieAppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = DarkColorScheme,
         typography = Typography,
         content = content
     )
 }
+
+
