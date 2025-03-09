@@ -30,7 +30,7 @@ fun CategoriesScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-            .padding(8.dp)
+            .padding(10.dp)
     ) {
         // Top Bar with Search
         Row(
@@ -51,7 +51,7 @@ fun CategoriesScreen(
                     backgroundColor = Color.DarkGray,
                     textColor = Color.White
                 ),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(5f)
             )
             IconButton(onClick = onClearSearch) {
                 Icon(
@@ -87,7 +87,7 @@ fun CategoriesScreen(
                 repeat(3) {
                     Box(
                         modifier = Modifier
-                            .size(100.dp, 140.dp)
+                            .size(115.dp, 180.dp)
                             .background(Color.Gray, RoundedCornerShape(8.dp))
                             .clickable { onMovieClick("Movie $it") },
                         contentAlignment = Alignment.Center

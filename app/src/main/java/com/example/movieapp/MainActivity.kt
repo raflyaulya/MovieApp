@@ -13,6 +13,7 @@ import com.example.movieapp.ui.screens.HomeScreen
 import com.example.movieapp.ui.screens.ProfileScreen
 import com.example.movieapp.ui.screens.SignInScreen
 import com.example.movieapp.ui.screens.SignUpScreen
+//import com.example.movieapp.ui.screens.GenresCategoriesScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +36,7 @@ fun MovieApp() {
         composable("forgotPass") { ForgotPasswordScreen() }
         composable("downloads") { DownloadsScreen() }
         composable("profile") { ProfileScreen() }
+//        composable("") { GenresCategoriesScreen() }
     }
 }
 
