@@ -10,13 +10,17 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.*
+import com.example.movieapp.ui.screens.CategoriesScreen
 import com.example.movieapp.ui.screens.DownloadsScreen
 import com.example.movieapp.ui.screens.EpisodesScreen
 import com.example.movieapp.ui.screens.ForgotPasswordScreen
 import com.example.movieapp.ui.screens.MoreMoviesScreen
 import com.example.movieapp.ui.screens.MovieDetailScreen
 import com.example.movieapp.ui.screens.MoviesScreen
+import com.example.movieapp.ui.screens.UserSelectionScreen
 import com.example.movieapp.ui.theme.MovieAppTheme
+import com.example.movieapp.ui.theme.screens.auth.SignInScreen
+import com.example.movieapp.ui.theme.screens.auth.SignUpScreen
 
 //import com.example.movieapp.ui.screens.GenresCategoriesScreen
 
@@ -58,7 +62,59 @@ fun MovieApp() {
             navController = navController,
             startDestination = Screen.Movies.route,
             modifier = Modifier.padding(paddingValues)
-        ) {
+        )
+
+        {
+            // Di dalam NavHost pada MainActivity.kt
+            composable("user_selection") {
+                UserSelectionScreen(
+                    onUserSelect = { userId ->
+                        navController.navigate("sign_in")
+                    },
+                    onCreateAccountClick = {
+                        navController.navigate("sign_up")
+                    }
+                )
+            }
+
+            composable("sign_in") {
+                SignInScreen(
+                    onSignInClick = {
+                        navController.navigate(Screen.Movies.route) {
+                            popUpTo("user_selection") { inclusive = true }
+                        }
+                    },
+                    onForgotPasswordClick = {
+                        navController.navigate(Screen.ForgotPassword.route)
+                    }
+                )
+            }
+
+            composable("sign_up") {
+                SignUpScreen(
+                    onSignUpClick = {
+                        navController.navigate(Screen.Movies.route) {
+                            popUpTo("user_selection") { inclusive = true }
+                        }
+                    }
+                )
+            }
+
+            composable("categories") {
+                CategoriesScreen(
+                    onBackClick = {
+                        navController.popBackStack()
+                    },
+                    onMovieClick = { movieId ->
+                        navController.navigate(
+                            Screen.MovieDetail.route.replace("{movieId}", movieId)
+                        )
+                    }
+                )
+            }
+
+
+
             composable(Screen.Movies.route) {
                 MoviesScreen(
                     onMovieClick = { movieId ->

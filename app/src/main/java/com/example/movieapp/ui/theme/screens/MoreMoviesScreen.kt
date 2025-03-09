@@ -36,7 +36,8 @@ fun MoreMoviesScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+//            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colors.background)
     ) {
         // Top Bar
         Row(
@@ -84,7 +85,8 @@ fun MoreMoviesScreen(
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.run {
                         val buttonColors = buttonColors(
-                            containerColor = if (selectedTab == index) Color.White else Color.DarkGray,
+//                            containerColor = if (selectedTab == index) Color.White else Color.DarkGray,
+                            if (selectedTab == index) Color.White else Color.DarkGray,
                             contentColor = if (selectedTab == index) Color.Black else Color.White
                         )
                         buttonColors
