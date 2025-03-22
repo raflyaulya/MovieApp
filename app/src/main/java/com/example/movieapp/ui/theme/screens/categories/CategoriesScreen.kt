@@ -131,13 +131,14 @@ fun MovieCard(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun CategoriesScreenPreview() {
-    MovieAppTheme {
-        CategoriesScreen(
-            onBackClick = {},
-            onMovieClick = {}
-        )
-    }
-}
+//@Preview(showBackground = true)
+//@Preview
+//@Composable
+//fun CategoriesScreenPreview() {
+//    MovieAppTheme {
+//        CategoriesScreen(
+//            onBackClick = {},
+//            onMovieClick = {}
+//        )
+//    }
+//}

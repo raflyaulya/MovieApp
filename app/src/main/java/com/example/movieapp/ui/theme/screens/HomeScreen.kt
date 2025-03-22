@@ -9,18 +9,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.movieapp.viewmodel.MovieViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.movieapp.ui.screens.MovieCard
 
 @Composable
-fun HomeScreen() {
-    val dummyMovies = listOf(
-        android.R.drawable.ic_menu_gallery,
-        android.R.drawable.ic_menu_gallery,
-        android.R.drawable.ic_menu_gallery
-    )
+fun HomeScreen(viewModel: MovieViewModel = viewModel()) {
+    val movies by viewModel.movies.collectAsState()
+    val error by viewModel.error.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.fetchPopularMovies("fbb9572d11b5458ac98f02b84f2bafc4")
+    }
 
     Column(
         modifier = Modifier
@@ -28,14 +33,21 @@ fun HomeScreen() {
             .background(Color.Black)
             .padding(16.dp)
     ) {
-        // Banner Utama (Gunakan Placeholder jika Tidak Ada Gambar)
-        Image(
-            painter = painterResource(id = android.R.drawable.ic_menu_gallery),
-            contentDescription = "Banner",
+        // Banner Utama (Placeholder)
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
-        )
+                .background(Color.DarkGray)
+        ) {
+            Text(
+                text = "Banner Placeholder",
+                color = Color.White,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.align(Alignment.Center)
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -48,14 +60,17 @@ fun HomeScreen() {
         )
         LazyRow {
             items(listOf("Action", "Comedy", "Drama", "Horror", "Sci-Fi")) { category ->
-                Text(
-                    text = category,
-                    color = Color.White,
+                Box(
                     modifier = Modifier
                         .padding(end = 12.dp)
                         .background(Color.Gray)
                         .padding(8.dp)
-                )
+                ) {
+                    Text(
+                        text = category,
+                        color = Color.White
+                    )
+                }
             }
         }
 
@@ -68,20 +83,25 @@ fun HomeScreen() {
             fontSize = 18.sp,
             modifier = Modifier.padding(bottom = 8.dp)
         )
-        LazyRow {
-            items(dummyMovies) { movie ->
-                Image(
-                    painter = painterResource(id = movie),
-                    contentDescription = "Movie Poster",
-                    modifier = Modifier
-                        .size(120.dp, 180.dp)
-                        .padding(end = 8.dp)
-                )
+
+        if (error != null) {
+            Text(text = "Error: $error", color = Color.Red)
+        } else {
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(movies) { movie ->
+                    MovieCard(
+                        movie = movie,
+                        onClick = {
+                            // Handle click event here
+                        }
+                    )
+                }
             }
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable

@@ -106,6 +106,9 @@ dependencies {
 }
 
 dependencies {
+    implementation(libs.firebase.appdistribution.gradle)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.activity.ktx)
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -124,4 +127,9 @@ dependencies {
 
     // Coil for image loading
     implementation("io.coil-kt:coil-compose:2.4.0")
+}
+
+dependencies {
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
