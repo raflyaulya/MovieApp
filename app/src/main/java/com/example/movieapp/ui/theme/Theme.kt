@@ -9,18 +9,6 @@ import androidx.compose.ui.graphics.Color
 // Theme.kt
 //import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-//import androidx.compose.ui.graphics.Color
-
-//private val DarkColorScheme = darkColorScheme(
-//    primary = Color.Red,
-//    background = Color.Black,
-//    surface = Color(0xFF121212),
-//    onBackground = Color.White,
-//    onSurface = Color.White
-//)
-
-
-// ... warna-warna lain yang sudah ada ...
 
 val LightColorScheme = lightColorScheme(
     primary = Purple40,

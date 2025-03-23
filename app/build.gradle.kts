@@ -37,6 +37,15 @@ android {
     buildFeatures {
         compose = true
     }
+    packagingOptions {
+        exclude("META-INF/io.netty.versions.properties") // Tambahkan ini
+        exclude("META-INF/INDEX.LIST") // Jika sebelumnya sudah ada
+        exclude("META-INF/DEPENDENCIES") // Jika sebelumnya sudah ada
+        exclude("META-INF/LICENSE") // Jika sebelumnya sudah ada
+        exclude("META-INF/LICENSE.txt") // Jika sebelumnya sudah ada
+        exclude("META-INF/NOTICE") // Jika sebelumnya sudah ada
+        exclude("META-INF/NOTICE.txt") // Jika sebelumnya sudah ada
+    }
 }
 
 dependencies {

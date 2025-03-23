@@ -24,7 +24,7 @@ fun HomeScreen(viewModel: MovieViewModel = viewModel()) {
     val error by viewModel.error.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.fetchPopularMovies("fbb9572d11b5458ac98f02b84f2bafc4")
+        viewModel.fetchPopularMovies()
     }
 
     Column(
