@@ -12,31 +12,35 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.movieapp.model.Movie
 
 @Composable
 fun MovieCard(
-    movie: com.example.movieapp.model.Movie,
+    movie: Movie,
     onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
-            .width(120.dp)
-            .height(180.dp)
+            .fillMaxWidth()
+            .height(200.dp)
             .clickable(onClick = onClick),
         colors = CardDefaults.cardColors(
             containerColor = Color.DarkGray
         )
     ) {
         Column(
+            modifier = Modifier.padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             AsyncImage(
                 model = "https://image.tmdb.org/t/p/w500${movie.poster_path}",
                 contentDescription = movie.title,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp)
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = movie.title,
                 color = Color.White,
